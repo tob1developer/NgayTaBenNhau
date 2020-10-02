@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_10"
+    tools:context=".ui.fragment.setting.SettingFragment">
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_btn_gender"
+        android:padding="@dimen/size_15"
+        android:layout_margin="@dimen/margin_5"
+        android:src="@drawable/ic_arrow_back_24px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/btnFeedback"
+        android:gravity=" center |start"
+        android:paddingLeft="@dimen/padding_10"
+        android:textColor="@color/mau_trang"
+        android:fontFamily="@font/iciel_finch_bold"
+        android:textSize="@dimen/text_size_30"
+        android:background="@drawable/custom_btn_date"
+        android:text="@string/feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:id="@+id/btnRate"
+        android:gravity=" center |start"
+        android:paddingLeft="@dimen/padding_10"
+        android:textColor="@color/mau_trang"
+        android:fontFamily="@font/iciel_finch_bold"
+        android:textSize="@dimen/text_size_30"
+        android:background="@drawable/custom_btn_date"
+        android:text="@string/rate"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btnFanpage"
+        android:text="@string/fanpage"
+        android:gravity=" center |start"
+        android:paddingLeft="@dimen/padding_10"
+        android:textColor="@color/mau_trang"
+        android:fontFamily="@font/iciel_finch_bold"
+        android:textSize="@dimen/text_size_30"
+        android:background="@drawable/custom_btn_date"
+        android:layout_marginTop="@dimen/margin_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutSwitch"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_5"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/custom_btn_date"
+        android:padding="@dimen/margin_5"
+        >
+        <TextView
+            android:gravity=" center |start"
+            android:paddingLeft="@dimen/margin_5"
+            android:id="@+id/tvNotification"
+            app:layout_constraintLeft_toLeftOf="@id/layoutSwitch"
+            app:layout_constraintTop_toTopOf="@id/layoutSwitch"
+            app:layout_constraintBottom_toBottomOf="@id/layoutSwitch"
+            android:fontFamily="@font/iciel_finch_bold"
+            android:textColor="@color/mau_trang"
+            android:text="@string/enable_unable_notification"
+            android:textSize="@dimen/text_size_30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <Switch
+            android:id="@+id/switchNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="@id/layoutSwitch"
+            app:layout_constraintTop_toTopOf="@id/layoutSwitch"
+            app:layout_constraintBottom_toBottomOf="@id/layoutSwitch"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

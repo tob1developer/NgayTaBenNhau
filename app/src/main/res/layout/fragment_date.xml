@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.date.DateFragment">
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/no_color"
+        android:padding="@dimen/padding_btn_back"
+        android:src="@drawable/ic_arrow_back_24px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/dateFirstLove"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_text_view_date"
+        android:fontFamily="@font/iciel_bambola"
+        android:gravity="center"
+        android:text="@string/date_first_love"
+        android:textSize="@dimen/text_size_date_fragment"
+        app:layout_constraintBottom_toTopOf="@id/datePresent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/btnChangeDateFirst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/custom_btn_date"
+        android:fontFamily="@font/iciel_finch_bold"
+        android:text="@string/change_date"
+        android:textAllCaps="false"
+        android:textColor="@color/mau_trang"
+        android:textSize="@dimen/text_size_30"
+        app:layout_constraintLeft_toLeftOf="@id/dateFirstLove"
+        app:layout_constraintRight_toRightOf="@id/dateFirstLove"
+        app:layout_constraintTop_toBottomOf="@id/dateFirstLove" />
+    <TextView
+        android:id="@+id/datePresent"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_text_view_date"
+        android:fontFamily="@font/iciel_bambola"
+        android:gravity="center"
+        android:text="@string/date_current"
+        android:textSize="@dimen/text_size_date_fragment"
+        app:layout_constraintBottom_toTopOf="@id/TimeTogether"
+        app:layout_constraintLeft_toLeftOf="@id/dateFirstLove"
+        app:layout_constraintRight_toRightOf="@id/dateFirstLove"
+        app:layout_constraintTop_toBottomOf="@id/dateFirstLove" />
+    <TextView
+        android:id="@+id/TimeTogether"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_text_view_day"
+        android:fontFamily="@font/iciel_bambola"
+        android:gravity="center"
+        android:text="@string/time_together"
+        android:textColor="@color/mau_trang"
+        android:textSize="@dimen/text_size_date_fragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/datePresent"
+        app:layout_constraintRight_toRightOf="@id/datePresent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_btn_setting">50dp</dimen>
+    <dimen name="size_text_title_dialog">30sp</dimen>
+    <dimen name="text_size_date_fragment">30sp</dimen>
+    <dimen name="layout_profile">150dp</dimen>
+    <dimen name="padding_tv_profile">10dp</dimen>
+    <dimen name="padding_btn_back">20dp</dimen>
+    <dimen name="layout_image_view_home">100dp</dimen>
+    <dimen name="size_text_name_app">35sp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="layout_quote">20dp</dimen>
+    <dimen name="text_size_quote_home">15sp</dimen>
+    <dimen name="size_view_date_in_home">250dp</dimen>
+    <dimen name="text_size_date_in_home">20sp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="text_size_30">30sp</dimen>
+    <dimen name="size_100">100dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="size_1">1dp</dimen>
+    <dimen name="size_20">20dp</dimen>
+    <dimen name="size_10_dp">10dp</dimen>
+    <dimen name="text_size_13">13sp</dimen>
+    <dimen name="size_7">7dp</dimen>
+    <dimen name="size_15">15dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+</resources>

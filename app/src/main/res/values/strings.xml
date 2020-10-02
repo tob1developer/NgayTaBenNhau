@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Ngay Ta Ben Nhau</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">Ok</string>
+    <string name="set_color_title">Set color</string>
+    <string name="cancel">Cancel</string>
+    <string name="date_first_love">Date First Love</string>
+    <string name="date_present">Date present</string>
+    <string name="time_together">Time together</string>
+    <string name="date_current">Date Current</string>
+    <string name="content_quote">Content Quote</string>
+    <string name="name_user">Name User</string>
+    <string name="date">Date</string>
+    <string name="change_name">Change Name</string>
+    <string name="change_date">Change Date</string>
+    <string name="change_gender">change Gender</string>
+    <string name="save_profile">Save Profile</string>
+    <string name="feedback">Feedback</string>
+    <string name="rate">Rate</string>
+    <string name="fanpage">Fanpage</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="gender">Gender</string>
+    <string name="random">random</string>
+    <string name="share">share</string>
+    <string name="quote_in_home_fragment">Quote in home fragment</string>
+    <string name="name_person_1">Name person 1</string>
+    <string name="name_person_2">Name person 2</string>
+    <string name="ngay_ta_ben_nhau">Ngày ta bên nhau</string>
+    <string name="top_title">Top title</string>
+    <string name="day_default_in_date">100 Day</string>
+    <string name="bottom_title">Bottom title</string>
+    <string name="change_avatar">Change Avatar</string>
+    <string name="enable_unable_notification">Enable/Unable Notification</string>
+    <string name="ba_cham">...</string>
+</resources>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.fragment.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_dateFragment"
+            app:destination="@id/dateFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_homeFragment_to_quoteFragment"
+            app:destination="@id/quoteFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileDialogFragment"
+            app:destination="@id/profileDialogFragment" >
+        </action>
+        <action
+            android:id="@+id/action_homeFragment_to_colorDialogFragment"
+            app:destination="@id/colorDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dateFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.fragment.date.DateFragment"
+        android:label="fragment_date"
+        tools:layout="@layout/fragment_date" >
+        <action
+            android:id="@+id/action_dateFragment_to_datePickerTogetherFragment"
+            app:destination="@id/datePickerTogetherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.fragment.setting.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_feedbackDialogFragment"
+            app:destination="@id/feedbackDialogFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_rateDialogFragment"
+            app:destination="@id/rateDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quoteFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.fragment.quote.QuoteFragment"
+        android:label="fragment_quote"
+        tools:layout="@layout/fragment_quote" />
+    <dialog
+        android:id="@+id/profileDialogFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.dialog.profire.ProfileDialogFragment"
+        android:label="dialog_fragment_profile"
+        tools:layout="@layout/dialog_fragment_profile" >
+        <action
+            android:id="@+id/action_profileDialogFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_profileDialogFragment_to_datePickerFragment"
+            app:destination="@id/datePickerFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/colorDialogFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.dialog.color.ColorDialogFragment"
+        android:label="dialog_fragment_color"
+        tools:layout="@layout/dialog_fragment_color" >
+        <action
+            android:id="@+id/action_colorDialogFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/feedbackDialogFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.dialog.feedback.FeedbackDialogFragment"
+        android:label="fragment_feedback_dialog"
+        tools:layout="@layout/fragment_feedback_dialog" />
+    <dialog
+        android:id="@+id/rateDialogFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.dialog.rate.RateDialogFragment"
+        android:label="fragment_rate_dialog"
+        tools:layout="@layout/fragment_rate_dialog" />
+    <dialog
+        android:id="@+id/datePickerFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.dialog.date.DatePickerFragment"
+        android:label="DatePickerFragment" />
+    <dialog
+        android:id="@+id/datePickerTogetherFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.fragment.date.dialog.DatePickerTogetherFragment"
+        android:label="DatePickerTogetherFragment" />
+</navigation>

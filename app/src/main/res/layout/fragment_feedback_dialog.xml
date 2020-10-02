@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/text_size_30"
+    android:paddingRight="@dimen/text_size_30"
+    android:paddingTop="@dimen/padding_10"
+    android:paddingBottom="@dimen/padding_10"
+    android:orientation="vertical"
+    tools:context=".ui.dialog.feedback.FeedbackDialogFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textViewFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_5"
+            android:fontFamily="@font/iciel_finch_bold"
+            android:gravity="center"
+            android:text="@string/feedback"
+            android:textSize="40sp" />
+        <EditText
+            android:id="@+id/editTextFeedback"
+            android:hint="@string/ba_cham"
+            android:fontFamily="@font/iciel_finch_bold"
+            android:textSize="@dimen/text_size_30"
+            android:background="@drawable/custom_text_view_date"
+            android:lines="4"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_btn_date"
+                android:fontFamily="@font/iciel_finch_bold"
+                android:text="@string/cancel"
+                android:textColor="@color/mau_trang"
+                android:textSize="@dimen/text_size_30" />
+            <Button
+                android:id="@+id/btnFeedback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_btn_date"
+                android:fontFamily="@font/iciel_finch_bold"
+                android:text="@string/feedback"
+                android:textColor="@color/mau_trang"
+                android:textSize="@dimen/text_size_30" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
