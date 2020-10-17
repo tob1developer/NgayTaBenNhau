@@ -13,3 +13,5 @@ const val GENDER_LESS =     4
 
 const val ID_LOVE_DATE = 1
 
+const val CHANNEL_NOTIFICATION_ID = "2"
+

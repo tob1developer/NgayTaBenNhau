@@ -26,4 +26,5 @@
     <dimen name="size_7">7dp</dimen>
     <dimen name="size_15">15dp</dimen>
     <dimen name="margin_50">50dp</dimen>
+    <dimen name="size_2">2dp</dimen>
 </resources>

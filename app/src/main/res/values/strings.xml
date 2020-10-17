@@ -34,4 +34,6 @@
     <string name="change_avatar">Change Avatar</string>
     <string name="enable_unable_notification">Enable/Unable Notification</string>
     <string name="ba_cham">...</string>
+    <string name="default_date_of_birth">28/12/99</string>
+    <string name="_15_day">15 day</string>
 </resources>

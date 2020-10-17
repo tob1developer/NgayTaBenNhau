@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
                 .build()
 
 
-
         lifecycleScope.launch(Dispatchers.IO){
             val bitmapDefault = BitmapFactory.decodeResource(resources,R.drawable.avatar_image_view)
 

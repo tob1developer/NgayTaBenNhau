@@ -1,5 +1,6 @@
 package com.kietngo.ngaytabennhau.ui.fragment.setting
 
+import android.app.Notification
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.kietngo.ngaytabennhau.R
 import com.kietngo.ngaytabennhau.databinding.FragmentSettingBinding
 import com.kietngo.ngaytabennhau.repository.EventObserver
+import com.kietngo.ngaytabennhau.ui.notification.NotificationLove
 import timber.log.Timber
 
 class SettingFragment : Fragment() {
@@ -36,6 +38,16 @@ class SettingFragment : Fragment() {
         viewModel.btnFeedback.observe(viewLifecycleOwner, { btn ->
             binding.btnFeedback.setOnClickListener { btn.onClick() }
         })
+
+        binding.switchNotification.setOnClickListener {
+            val notification = NotificationLove(requireContext(),requireActivity())
+            if (binding.switchNotification.isChecked){
+                notification.turnOnNotification()
+            }
+            else{
+                notification.cancelNotification()
+            }
+        }
 
         viewModel.navigateFeedbackDialog.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(it)
