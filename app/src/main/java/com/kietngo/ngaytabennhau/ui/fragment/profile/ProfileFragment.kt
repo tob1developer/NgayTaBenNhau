@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.kietngo.ngaytabennhau.R
 import com.kietngo.ngaytabennhau.databinding.FragmentProfileBinding
 import com.kietngo.ngaytabennhau.repository.*
@@ -40,7 +42,7 @@ class ProfileDialogFragment : Fragment() {
         return binding.root
     }
 
-    private var userToSave : User? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.textViewName.isEnabled = false
@@ -76,63 +78,64 @@ class ProfileDialogFragment : Fragment() {
             }
         })
 
-//
-//        viewModel.btnSaveProfile.observe(viewLifecycleOwner,{btn ->
-//            binding.btnSave.setOnClickListener {
-//                btn.onClick()
-//                Timber.d("navigateUp Profile to Home")
-//            }
-//        })
-//
-//        viewModel.btnSetNameUser.observe(viewLifecycleOwner, {btn ->
-//            binding.btnChangeName.setOnClickListener {
-//                btn.onClick()
-//                Timber.d("Enable edit name")
-//            }
-//        })
-//
-//        viewModel.btnChangeDate.observe(viewLifecycleOwner,{btn ->
-//            binding.btnChangeDate.setOnClickListener {
-//                btn.onClick()
-//                Timber.d("turn on Date Picker Dialog")
-//            }
-//        })
-//
-//        binding.btnCancel.setOnClickListener {
-//            findNavController().navigateUp()
-//            Timber.d("back press dialog to home ")
-//        }
-//
+        //TODO: Save profile
+        viewModel.btnSaveProfile.observe(viewLifecycleOwner,{btn ->
+            binding.btnSave.setOnClickListener {
+                btn.onClick()
+                Timber.d("navigateUp Profile to Home")
+            }
+        })
 
-//
-//        viewModel.navigateSaveAndToBackHome.observe(viewLifecycleOwner, EventObserver{ checker ->
-//            if (checker){
-//                userToSave?.avatar = binding.imageViewAvatar.drawable.toBitmap()
-//                userToSave?.nickName = binding.textViewName.text.toString()
-//                userToSave?.birthDay = binding.textViewDate.text.toString()
-//                userToSave?.gender = getGender()
-//
-//                userToSave?.let { viewModel.saveUserToDb(it) }
-//
-//                val action =
-//                    ProfileDialogFragmentDirections.actionProfileDialogFragmentToHomeFragment()
-//                findNavController().navigate(action)
-//            }
-//        })
-//
-//
-//        viewModel.changeNameUser.observe(viewLifecycleOwner, EventObserver{
-//            if (it) {
-//                binding.textViewName.isEnabled = true
-//            }
-//        })
-//
-//        viewModel.navigateDatePicker.observe(viewLifecycleOwner, EventObserver{
-//            if (it){
-//                val action = ProfileDialogFragmentDirections.actionProfileDialogFragmentToDatePickerFragment()
-//                findNavController().navigate(action)
-//            }
-//        })
+        viewModel.navigateSaveAndToBackHome.observe(viewLifecycleOwner, EventObserver{ checker ->
+            if (checker && id !=null){
+                val avatar = binding.imageViewAvatar.drawable.toBitmap()
+                val nickName = binding.textViewName.text.toString()
+                val birthDay = binding.textViewDate.text.toString()
+                val gender = getGender()
+
+                val userSave = User(id, avatar, nickName,birthDay,gender,"#FFFFFF")
+                viewModel.saveProfileUser(userSave)
+
+                val action =
+                    ProfileDialogFragmentDirections.actionProfileDialogFragmentToHomeFragment()
+                findNavController().navigate(action)
+            }
+        })
+
+        //TODO: change name User
+        viewModel.btnSetNameUser.observe(viewLifecycleOwner, {btn ->
+            binding.btnChangeName.setOnClickListener {
+                btn.onClick()
+                Timber.d("Enable edit name")
+            }
+        })
+        viewModel.changeNameUser.observe(viewLifecycleOwner, EventObserver{
+            if (it) {
+                binding.textViewName.isEnabled = true
+            }
+        })
+
+        //TODO: Change Date
+        viewModel.btnChangeDate.observe(viewLifecycleOwner,{btn ->
+            binding.btnChangeDate.setOnClickListener {
+                btn.onClick()
+                Timber.d("turn on Date Picker Dialog")
+            }
+        })
+
+        viewModel.navigateDatePicker.observe(viewLifecycleOwner, EventObserver{
+            if (it){
+                val action = ProfileDialogFragmentDirections.actionProfileDialogFragmentToDatePickerFragment()
+                findNavController().navigate(action)
+            }
+        })
+
+        //TODO: Cancel and back to Home Fragment
+        binding.btnCancel.setOnClickListener {
+            findNavController().navigateUp()
+            Timber.d("back press dialog to home ")
+        }
+
 //
 //        val calendar = Observer<Calendar> {
 //            val day = it.get(Calendar.DAY_OF_MONTH)

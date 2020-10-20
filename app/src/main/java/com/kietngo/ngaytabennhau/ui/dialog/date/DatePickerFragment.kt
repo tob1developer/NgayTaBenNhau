@@ -8,11 +8,12 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.kietngo.ngaytabennhau.ui.fragment.date.DateViewModel
 import com.kietngo.ngaytabennhau.ui.fragment.home.HomeViewModel
+import com.kietngo.ngaytabennhau.ui.fragment.profile.ProfileViewModel
 import java.util.*
 
 class DatePickerFragment(): DialogFragment(), DatePickerDialog.OnDateSetListener {
 
-    private val viewModelHome : HomeViewModel by activityViewModels()
+    private val viewModelHome : ProfileViewModel by activityViewModels()
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)

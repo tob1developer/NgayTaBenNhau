@@ -16,4 +16,9 @@ class UserRepository(private val userDao: UserDao) {
     suspend fun insertUser(user : User){
         userDao.insertUser(user)
     }
+
+    @WorkerThread
+    suspend fun updateUser(user: User){
+        userDao.updateUser(user)
+    }
 }
