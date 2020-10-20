@@ -30,6 +30,6 @@ class DatePickerFragment(): DialogFragment(), DatePickerDialog.OnDateSetListener
         calendar.set(Calendar.MONTH, p2)
         calendar.set(Calendar.YEAR, p1)
 
-        viewModelHome.getCalendar.value = calendar
+        // viewModelHome.getCalendar.value = calendar
     }
 }

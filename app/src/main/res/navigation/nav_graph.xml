@@ -34,10 +34,16 @@
         <action
             android:id="@+id/action_homeFragment_to_profileDialogFragment"
             app:destination="@id/profileDialogFragment" >
+            <argument
+                android:name="idUser"
+                app:argType="integer"
+                android:defaultValue="0" />
         </action>
         <action
             android:id="@+id/action_homeFragment_to_colorDialogFragment"
-            app:destination="@id/colorDialogFragment" />
+            app:destination="@id/colorDialogFragment" >
+
+        </action>
     </fragment>
     <fragment
         android:id="@+id/dateFragment"
@@ -65,18 +71,18 @@
         android:name="com.kietngo.ngaytabennhau.ui.fragment.quote.QuoteFragment"
         android:label="fragment_quote"
         tools:layout="@layout/fragment_quote" />
-    <dialog
+    <fragment
         android:id="@+id/profileDialogFragment"
-        android:name="com.kietngo.ngaytabennhau.ui.dialog.profire.ProfileDialogFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.fragment.profile.ProfileDialogFragment"
         android:label="dialog_fragment_profile"
-        tools:layout="@layout/dialog_fragment_profile" >
+        tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileDialogFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_profileDialogFragment_to_datePickerFragment"
             app:destination="@id/datePickerFragment" />
-    </dialog>
+    </fragment>
     <dialog
         android:id="@+id/colorDialogFragment"
         android:name="com.kietngo.ngaytabennhau.ui.dialog.color.ColorDialogFragment"

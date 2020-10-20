@@ -31,30 +31,30 @@ class ColorDialogFragment : DialogFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        colorAdapter = ColorAdapter()
-        colorAdapter.onNavigateUp = {
-            Timber.d("ddkdk $it")
-            viewModel.saveColorLove(it)
-            findNavController().navigateUp()
-        }
-
-        viewModel.listColor.observe(viewLifecycleOwner,{list ->
-            colorAdapter.submitList(list)
-        })
-
-        binding.listColor.apply {
-            adapter = colorAdapter
-            layoutManager =
-                GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)
-        }
-
-        binding.btnCancel.setOnClickListener {
-            findNavController().navigateUp()
-            Timber.d("back press color dialog to home")
-        }
-
-
-    }
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//
+//        colorAdapter = ColorAdapter()
+//        colorAdapter.onNavigateUp = {
+//            Timber.d("ddkdk $it")
+//            viewModel.saveColorLove(it)
+//            findNavController().navigateUp()
+//        }
+//
+//        viewModel.listColor.observe(viewLifecycleOwner,{list ->
+//            colorAdapter.submitList(list)
+//        })
+//
+//        binding.listColor.apply {
+//            adapter = colorAdapter
+//            layoutManager =
+//                GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)
+//        }
+//
+//        binding.btnCancel.setOnClickListener {
+//            findNavController().navigateUp()
+//            Timber.d("back press color dialog to home")
+//        }
+//
+//
+//    }
 }

@@ -65,9 +65,6 @@ class SettingViewModel constructor(
 
     private val _navigateRateDialog = MutableLiveData<Event<NavDirections>>()
     val navigateRateDialog : LiveData<Event<NavDirections>> = _navigateRateDialog
-
-
-
 }
 
 
