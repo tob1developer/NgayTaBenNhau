@@ -1,7 +1,9 @@
-package com.kietngo.ngaytabennhau.repository
+package com.kietngo.ngaytabennhau.repository.repository
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import com.kietngo.ngaytabennhau.repository.ID_USER_1
+import com.kietngo.ngaytabennhau.repository.ID_USER_2
 import com.kietngo.ngaytabennhau.repository.dao.UserDao
 import com.kietngo.ngaytabennhau.repository.model.User
 

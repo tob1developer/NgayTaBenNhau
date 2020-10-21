@@ -1,4 +1,4 @@
-package com.kietngo.ngaytabennhau.repository
+package com.kietngo.ngaytabennhau.repository.repository
 
 import androidx.lifecycle.LiveData
 import com.kietngo.ngaytabennhau.repository.dao.ColorDao

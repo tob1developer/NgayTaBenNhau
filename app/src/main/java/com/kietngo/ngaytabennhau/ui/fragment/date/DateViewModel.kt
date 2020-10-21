@@ -64,8 +64,8 @@ class DateViewModel constructor(
             val dateLove = database.loveDateDao().loadLoveDate(ID_LOVE_DATE)
 
             withContext(Dispatchers.Main){
-                getCalendarFirst.value = dateLove.startDate
-                setDay()
+//                getCalendarFirst.value = dateLove.startDate
+//                setDay()
             }
         }
     }
@@ -82,16 +82,16 @@ class DateViewModel constructor(
     }
 
     fun saveStartDateTogether(calendar: Calendar){
-        viewModelScope.launch(Dispatchers.IO){
-            var dateLove = database.loveDateDao().loadLoveDate(ID_LOVE_DATE)
-
-                dateLove.startDate = calendar
-
-                database.loveDateDao().updateLoveDate(dateLove)
-                Timber.d("update day together")
-
-                var dateLoveTest = database.loveDateDao().loadLoveDate(ID_LOVE_DATE)
-        }
+//        viewModelScope.launch(Dispatchers.IO){
+//            var dateLove = database.loveDateDao().loadLoveDate(ID_LOVE_DATE)
+//
+//                dateLove.startDate = calendar
+//
+//                database.loveDateDao().updateLoveDate(dateLove)
+//                Timber.d("update day together")
+//
+//                var dateLoveTest = database.loveDateDao().loadLoveDate(ID_LOVE_DATE)
+//        }
     }
 
 }

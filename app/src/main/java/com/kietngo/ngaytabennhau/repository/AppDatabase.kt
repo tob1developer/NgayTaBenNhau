@@ -20,6 +20,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.*
+import kotlin.collections.ArrayList
 
 @Database(entities =
 [User::class, Quote::class, LoveDate::class, Color::class],
@@ -54,13 +56,16 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
-        private class AppDatabaseCallback(private val scope: CoroutineScope, val context: Context): RoomDatabase.Callback(){
+        private class AppDatabaseCallback(
+            private val scope: CoroutineScope, val context: Context
+        ): RoomDatabase.Callback(){
+
             override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onOpen(db)
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
                         populateColorDatabase(database.colorDao())
-                        populateLoveDateDatabase(database.loveDateDao())
+                        populateLoveDateDatabase(database.loveDateDao(), context)
                         populateQuoteDatabase(database.quoteDao())
                         populateUserDatabase(database.userDao(), context)
                     }
@@ -87,11 +92,24 @@ abstract class AppDatabase : RoomDatabase() {
                 val color = Color(tmp, "quote Color",color)
                 colorDao.insertColor(color)
             }
-
+            Timber.d("Khoi tao Color")
         }
 
-        fun populateLoveDateDatabase(loveDateDao: LoveDateDao){
-            // TODO: Create LoveData
+        fun populateLoveDateDatabase(loveDateDao: LoveDateDao, context: Context){
+            val bitmapDefaultWallPage
+                    = BitmapFactory.decodeResource(context.resources,R.drawable.whilte_wall_pager)
+                val calendar = Calendar.getInstance()
+                val loveDate = LoveDate(
+                    ID_LOVE_DATE,
+                    calendar,
+                    TOP_TITLE_DEFAULT,
+                    BOTTOM_TITLE_DEFAULT,
+                    bitmapDefaultWallPage,
+                    COLOR_DEFAULT
+                )
+                loveDateDao.insertLoveDate(loveDate)
+
+                Timber.d("khoi tao Date love")
         }
 
         fun populateQuoteDatabase(quoteDao: QuoteDao){
@@ -99,26 +117,27 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         fun populateUserDatabase(userDao: UserDao, context: Context){
-            val bitmapDefault = BitmapFactory.decodeResource(context.resources,R.drawable.avatar_image_view)
+            val bitmapDefault
+                    = BitmapFactory.decodeResource(context.resources,R.drawable.avatar_image_view)
 
             //User 1
             val defaultUser1 = User(
                 ID_USER_1,
                 bitmapDefault,
-                "default nick name",
-                "28/12/1999",
+                NICK_NAME_DEFAULT,
+                BIRTH_DAY_DEFAULT,
                 GENDER_MALE,
-                "#FFFFFF"
+                COLOR_DEFAULT
             )
             userDao.insertUser(defaultUser1)
             //User 2
             val defaultUser2 = User(
                 ID_USER_2,
                 bitmapDefault,
-                "default nick name",
-                "28/12/1999",
+                NICK_NAME_DEFAULT,
+                BIRTH_DAY_DEFAULT,
                 GENDER_FEMALE,
-                "#FFFFFF"
+                COLOR_DEFAULT
             )
 
             userDao.insertUser(defaultUser2)

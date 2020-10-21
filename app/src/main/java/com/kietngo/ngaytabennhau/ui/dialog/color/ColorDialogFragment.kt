@@ -34,11 +34,11 @@ class ColorDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         colorAdapter = ColorAdapter()
-//        colorAdapter.onNavigateUp = {
-//            Timber.d("ddkdk $it")
-//            viewModel.saveColorLove(it)
-//            findNavController().navigateUp()
-//        }
+        colorAdapter.onNavigateUp = {
+
+            viewModel.saveColorLove(it)
+            findNavController().navigateUp()
+        }
 
         viewModel.listColor.observe(viewLifecycleOwner,{list ->
             colorAdapter.submitList(list)

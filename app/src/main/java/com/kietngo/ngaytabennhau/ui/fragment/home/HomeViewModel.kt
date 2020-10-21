@@ -1,27 +1,19 @@
 package com.kietngo.ngaytabennhau.ui.fragment.home
 
 import android.app.Application
-import android.content.Context
-import android.graphics.BitmapFactory
-import androidx.core.graphics.createBitmap
+import android.widget.Toast
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
-import androidx.navigation.Navigation
-import androidx.room.Room
-import com.kietngo.ngaytabennhau.R
 import com.kietngo.ngaytabennhau.repository.*
-import com.kietngo.ngaytabennhau.repository.model.Color
-import com.kietngo.ngaytabennhau.repository.model.Quote
+import com.kietngo.ngaytabennhau.repository.model.LoveDate
 import com.kietngo.ngaytabennhau.repository.model.User
+import com.kietngo.ngaytabennhau.repository.repository.ColorRepository
+import com.kietngo.ngaytabennhau.repository.repository.LoveDateRepository
+import com.kietngo.ngaytabennhau.repository.repository.UserRepository
 import com.kietngo.ngaytabennhau.ui.model.ButtonUi
 import com.kietngo.ngaytabennhau.ui.model.ColorUi
-import com.kietngo.ngaytabennhau.ui.model.UserUi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import timber.log.Timber
-import java.util.*
-import kotlin.random.Random
 
 class HomeViewModel constructor(
     private val application: Application
@@ -29,9 +21,12 @@ class HomeViewModel constructor(
 
     private val userRepository : UserRepository
     private val colorRepository : ColorRepository
+    private val loveDateRepository : LoveDateRepository
 
     //TODO: Color dialogFragment
     val listColor : LiveData<List<ColorUi>>
+
+    val loveDate : LiveData<LoveDate>
 
 //    // chuyen toi man hinh quote
 //    private val _navigateQuoteFragment = MutableLiveData<Event<NavDirections>>()
@@ -259,6 +254,10 @@ class HomeViewModel constructor(
             }
         }
 
+        val loveDateDao = AppDatabase.getDatabase(application, viewModelScope).loveDateDao()
+        loveDateRepository = LoveDateRepository(loveDateDao)
+        loveDate = loveDateRepository.loveDate
+
     }
 
 //    fun saveUserToDb(user: User){
@@ -277,13 +276,23 @@ class HomeViewModel constructor(
 //        }
 //    }
 //
-//    fun saveColorLove(color : String){
-//        viewModelScope.launch (Dispatchers.IO){
-//            var dateLove = database.loveDateDao().loadLoveDate(ID_LOVE_DATE)
-//            dateLove.loveColor = color
-//            database.loveDateDao().updateLoveDate(dateLove)
-//        }
-//    }
+    fun saveColorLove(color : String){
+        viewModelScope.launch (Dispatchers.IO){
+            val saveLoveDate = loveDate.value
+
+            if(saveLoveDate != null){
+                saveLoveDate.loveColor = color
+                loveDateRepository.updateLoveDate(saveLoveDate)
+            }else
+                Toast.makeText(
+                    application,
+                    "Gặp sự cố, không thể save.",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+
+        }
+    }
 //
 //    private fun setDay(calendar: Calendar): String{
 //        val today: Calendar = Calendar.getInstance()

@@ -75,6 +75,12 @@ class HomeFragment : Fragment() {
             Timber.d("navigate Color Dialog Fragment")
         })
 
+        //TODO: Set color with change color
+        viewModel.loveDate.observe(viewLifecycleOwner, {loveDate ->
+            val colorSet = Color.parseColor(loveDate.loveColor)
+            binding.btnFavorite.setColorFilter(colorSet)
+        })
+
 //
 //        viewModel.navigateDateFragment.observe(viewLifecycleOwner, EventObserver{
 //            findNavController().navigate(it)
@@ -92,7 +98,7 @@ class HomeFragment : Fragment() {
 //        })
 //
 
-        //navigate to Profile Fragment
+        //TODO:  navigate to Profile Fragment
 
         viewModel.btnProfileDialogFragmentUser1.observe(viewLifecycleOwner, {btn ->
             binding.avatarPerson1.setOnClickListener {
@@ -113,6 +119,7 @@ class HomeFragment : Fragment() {
         })
 
 
+        // TODO: load user to view
 
         viewModel.user1.observe(viewLifecycleOwner, { user ->
            if(user != null){
@@ -132,12 +139,6 @@ class HomeFragment : Fragment() {
             }
           })
 
-//        // color Heart dialog
-//        val colorToHeart = Observer<String>{
-//            binding.btnFavorite.setColorFilter(Color.parseColor(it))
-//        }
-//
-//        viewModel.setColorHeartView.observe(viewLifecycleOwner, colorToHeart)
 //
 //        val quote = Observer<Quote> {
 //            binding.textViewQuote.text = it.content

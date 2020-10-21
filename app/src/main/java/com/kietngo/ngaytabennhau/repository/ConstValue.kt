@@ -17,3 +17,10 @@ const val CHANNEL_NOTIFICATION_ID = "2"
 const val ID_NOTIFICATION_CHANNEL = 1
 const val NAME_CHANNEL_NOTIFICATION = "channel notification Ngay ta ben nhau"
 
+const val TOP_TITLE_DEFAULT = "Top title default"
+const val BOTTOM_TITLE_DEFAULT = "Bottom title"
+const val COLOR_DEFAULT = "#FFFFFF"
+
+const val NICK_NAME_DEFAULT  = "default nick name"
+const val BIRTH_DAY_DEFAULT = "28/12/1999"
+
