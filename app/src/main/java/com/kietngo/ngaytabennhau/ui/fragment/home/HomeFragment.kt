@@ -65,11 +65,16 @@ class HomeFragment : Fragment() {
 //                idInProfileDialogFragment = ID_USER_2
 //            }
 //        })
-//
-//        viewModel.btnGetColor.observe(viewLifecycleOwner, {btn ->
-//            binding.btnFavorite.setOnClickListener { btn.onClick() }
-//        })
-//
+        //TODO: go to select color of Heart
+        viewModel.btnGetColor.observe(viewLifecycleOwner, {btn ->
+            binding.btnFavorite.setOnClickListener { btn.onClick() }
+        })
+
+        viewModel.navigateColorDialogFragment.observe(viewLifecycleOwner, EventObserver{
+            findNavController().navigate(it)
+            Timber.d("navigate Color Dialog Fragment")
+        })
+
 //
 //        viewModel.navigateDateFragment.observe(viewLifecycleOwner, EventObserver{
 //            findNavController().navigate(it)
@@ -106,11 +111,8 @@ class HomeFragment : Fragment() {
             findNavController().navigate(action)
             Timber.d("Navigate Profile Dialog Fragment")
         })
-//
-//        viewModel.navigateColorDialogFragment.observe(viewLifecycleOwner, EventObserver{
-//            findNavController().navigate(it)
-//            Timber.d("navigate Color Dialog Fragment")
-//        })
+
+
 
         viewModel.user1.observe(viewLifecycleOwner, { user ->
            if(user != null){

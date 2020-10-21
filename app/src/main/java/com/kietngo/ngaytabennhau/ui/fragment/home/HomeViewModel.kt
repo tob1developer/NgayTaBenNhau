@@ -28,11 +28,10 @@ class HomeViewModel constructor(
 ): ViewModel() {
 
     private val userRepository : UserRepository
+    private val colorRepository : ColorRepository
 
-    //sau se bo
-//    private var database : AppDatabase =
-//        Room.databaseBuilder(application, AppDatabase::class.java, NAME_DATABASE)
-//            .build()
+    //TODO: Color dialogFragment
+    val listColor : LiveData<List<ColorUi>>
 
 //    // chuyen toi man hinh quote
 //    private val _navigateQuoteFragment = MutableLiveData<Event<NavDirections>>()
@@ -83,7 +82,8 @@ class HomeViewModel constructor(
     val navigateProfileDialogFragment : LiveData<Event<Int>> = _navigateProfileDialogFragment
 
 
-    private val _btnProfileDialogFragmentUser1 = MutableLiveData<ButtonUi>().apply {
+    private val _btnProfileDialogFragmentUser1
+            = MutableLiveData<ButtonUi>().apply {
         value = ButtonUi(
             onClick = {
                 _navigateProfileDialogFragment.postValue(Event(ID_USER_1))
@@ -92,7 +92,8 @@ class HomeViewModel constructor(
     }
     val btnProfileDialogFragmentUser1 : LiveData<ButtonUi> = _btnProfileDialogFragmentUser1
 
-    private val _btnProfileDialogFragmentUser2 = MutableLiveData<ButtonUi>().apply {
+    private val _btnProfileDialogFragmentUser2
+            = MutableLiveData<ButtonUi>().apply {
         value = ButtonUi(
             onClick = {
                 _navigateProfileDialogFragment.postValue(Event(ID_USER_2))
@@ -101,40 +102,27 @@ class HomeViewModel constructor(
     }
     val btnProfileDialogFragmentUser2 : LiveData<ButtonUi> = _btnProfileDialogFragmentUser2
 
-//
-//    private val _navigateColorDialogFragment = MutableLiveData<Event<NavDirections>>()
-//    val navigateColorDialogFragment : LiveData<Event<NavDirections>> = _navigateColorDialogFragment
-//
-//    private val _btnGetColor = MutableLiveData<ButtonUi>().apply {
-//        value = ButtonUi(
-//            onClick = {
-//                val action = HomeFragmentDirections.actionHomeFragmentToColorDialogFragment()
-//                _navigateColorDialogFragment.postValue(Event(action))
-//            }
-//        )
-//    }
-//    val btnGetColor : LiveData<ButtonUi> = _btnGetColor
+
+    private val _navigateColorDialogFragment = MutableLiveData<Event<NavDirections>>()
+    val navigateColorDialogFragment : LiveData<Event<NavDirections>> = _navigateColorDialogFragment
+
+    private val _btnGetColor
+            = MutableLiveData<ButtonUi>().apply {
+        value = ButtonUi(
+            onClick = {
+                val action
+                        = HomeFragmentDirections.actionHomeFragmentToColorDialogFragment()
+                _navigateColorDialogFragment.postValue(Event(action))
+            }
+        )
+    }
+    val btnGetColor : LiveData<ButtonUi> = _btnGetColor
 
     val user1 : LiveData<User>
-//        = _user1.map {
-//        UserUi(
-//            user = it,
-//            onClick = {
-//               // getUserInProfileDialog.postValue(it)
-//            }
-//        )
-//    }
 
 
     val user2 : LiveData<User>
-//        = _user2.map {
-//        UserUi(
-//            user = it,
-//            onClick = {
-//               // getUserInProfileDialog.postValue(it)
-//            }
-//        )
-//    }
+
 //
 //    private val _quoteInHomeFragment : MutableLiveData<Quote> by lazy {
 //        MutableLiveData<Quote>()
@@ -232,6 +220,8 @@ class HomeViewModel constructor(
 //    val dayTogether : MutableLiveData<String> by lazy {
 //        MutableLiveData<String>()
 //    }
+
+    // TODO: khoi tao
     init {
         // get User
 //        viewModelScope.launch(Dispatchers.IO){
@@ -256,6 +246,18 @@ class HomeViewModel constructor(
         userRepository = UserRepository(userDao)
         user1 = userRepository.user1
         user2 = userRepository.user2
+
+        val colorDao = AppDatabase.getDatabase(application, viewModelScope).colorDao()
+        colorRepository = ColorRepository(colorDao)
+        listColor = colorRepository.listColor.map {
+            it.map { colorToList ->
+                ColorUi(
+                color = colorToList,
+                onClick = {
+                }
+            )
+            }
+        }
 
     }
 

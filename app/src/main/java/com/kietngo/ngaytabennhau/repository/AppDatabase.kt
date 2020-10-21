@@ -67,15 +67,34 @@ abstract class AppDatabase : RoomDatabase() {
                 }
             }
         }
+
         fun populateColorDatabase(colorDao: ColorDao){
-            //TODO: Create color
+            val list = ArrayList<String>()
+            list.add("#7abfaa")
+            list.add("#347c41")
+            list.add("#e970ad")
+            list.add("#0cc419")
+            list.add("#386b75")
+            list.add("#5b13a7")
+            list.add("#be97b6")
+            list.add("#7aea9b")
+            list.add("#0a71f1")
+            list.add("#c45b63")
+            list.add("#78a51d")
+            list.add("#ab7992")
+
+            list.forEachIndexed{ tmp, color ->
+                val color = Color(tmp, "quote Color",color)
+                colorDao.insertColor(color)
+            }
+
         }
 
         fun populateLoveDateDatabase(loveDateDao: LoveDateDao){
             // TODO: Create LoveData
         }
 
-        fun populateQuoteDatabase(quote: QuoteDao){
+        fun populateQuoteDatabase(quoteDao: QuoteDao){
             // TODO: create Quote
         }
 

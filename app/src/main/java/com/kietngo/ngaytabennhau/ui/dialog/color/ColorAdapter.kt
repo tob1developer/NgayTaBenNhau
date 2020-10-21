@@ -13,7 +13,7 @@ import com.kietngo.ngaytabennhau.ui.model.ColorUi
 
 class ColorAdapter : ListAdapter<ColorUi, ColorAdapter.ColorViewHolder>(ColorDiffUtil) {
 
-    var onNavigateUp: (color : String) -> Unit = {}
+    //var onNavigateUp: (color : String) -> Unit = {}
     inner class ColorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val imageView  = itemView.findViewById<ImageView>(R.id.imageColor)
 
@@ -23,7 +23,7 @@ class ColorAdapter : ListAdapter<ColorUi, ColorAdapter.ColorViewHolder>(ColorDif
 
             itemView.setOnClickListener {
                 colorUi.onClick()
-                onNavigateUp(colorUi.color.ColorToHex)
+              //  onNavigateUp(colorUi.color.ColorToHex)
             }
         }
     }
