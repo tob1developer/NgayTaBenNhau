@@ -10,6 +10,7 @@ import com.kietngo.ngaytabennhau.repository.model.User
 import com.kietngo.ngaytabennhau.ui.model.ButtonUi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 
 class ProfileViewModel constructor(
     private val application: Application
@@ -71,6 +72,10 @@ class ProfileViewModel constructor(
     private val _navigateDatePicker = MutableLiveData<Event<Boolean>>()
     val navigateDatePicker : LiveData<Event<Boolean>> = _navigateDatePicker
 
+    //TODO: Get date picker to dialog date picker
+    val getCalendar : MutableLiveData<Calendar> by lazy {
+        MutableLiveData<Calendar>()
+    }
 
     //TODO: Khoi tao
     init {
