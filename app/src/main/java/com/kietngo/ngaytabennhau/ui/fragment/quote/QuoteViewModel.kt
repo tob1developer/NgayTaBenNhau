@@ -38,7 +38,7 @@ class QuoteViewModel constructor(
         val quoteDao = AppDatabase.getDatabase(application, viewModelScope).quoteDao()
         quoteRepository = QuoteRepository(quoteDao)
     }
-
+    //TODO: random Quote
     private val _btnRandomQuote = MutableLiveData<ButtonUi>().apply {
         value = ButtonUi(
             onClick = {
@@ -50,24 +50,25 @@ class QuoteViewModel constructor(
         )
     }
     val btnRandomQuote : LiveData<ButtonUi> = _btnRandomQuote
-//
-//    private val _btnShareQuote = MutableLiveData<ButtonUi>().apply {
-//        value = ButtonUi(
-//            onClick = {
-//
-////                val content = randomQuote.value?.content
-////                if (content != null)
-////                    _contentQuote.postValue(Event(content))
-//            }
-//        )
-//    }
-//    val btnShareQuote : LiveData<ButtonUi> = _btnShareQuote
-//
-//    private val _contentQuote : MutableLiveData<Event<String>> by lazy {
-//        MutableLiveData<Event<String>>()
-//    }
-//    val contentQuote : LiveData<Event<String>> = _contentQuote
-//
+
+    //TODO: Share Quote
+    private val _btnShareQuote = MutableLiveData<ButtonUi>().apply {
+        value = ButtonUi(
+            onClick = {
+
+                val content = randomQuote.value?.content
+                if (content != null)
+                    _contentQuote.postValue(Event(content))
+            }
+        )
+    }
+    val btnShareQuote : LiveData<ButtonUi> = _btnShareQuote
+
+    private val _contentQuote : MutableLiveData<Event<String>> by lazy {
+        MutableLiveData<Event<String>>()
+    }
+    val contentQuote : LiveData<Event<String>> = _contentQuote
+
 
 
     fun randomQuoteWithInt(number : Int){

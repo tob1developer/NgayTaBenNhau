@@ -82,24 +82,24 @@ class QuoteFragment : Fragment() {
         })
 
 
-//
-//        viewModel.btnShareQuote.observe(viewLifecycleOwner,{ btn ->
-//            binding.btnShare.setOnClickListener {
-//                btn.onClick()
-//            }
-//        })
-//
-//        viewModel.contentQuote.observe(viewLifecycleOwner, EventObserver{
-//            val sendIntent = Intent().apply {
-//                action = Intent.ACTION_SEND
-//                putExtra(Intent.EXTRA_TEXT,it)
-//                type = "text/plan"
-//            }
-//            val shareIntent = Intent.createChooser(sendIntent, null)
-//            startActivity(shareIntent)
-//            Timber.d("go share")
-//        })
-//
+        //TODO: btn Shre quote
+        viewModel.btnShareQuote.observe(viewLifecycleOwner,{ btn ->
+            binding.btnShare.setOnClickListener {
+                btn.onClick()
+            }
+        })
+
+        viewModel.contentQuote.observe(viewLifecycleOwner, EventObserver{
+            val sendIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT,it)
+                type = "text/plan"
+            }
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+            Timber.d("go share")
+        })
+
 
     }
 }
