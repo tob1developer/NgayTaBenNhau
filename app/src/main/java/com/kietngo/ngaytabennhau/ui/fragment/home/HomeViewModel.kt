@@ -6,14 +6,19 @@ import androidx.lifecycle.*
 import androidx.navigation.NavDirections
 import com.kietngo.ngaytabennhau.repository.*
 import com.kietngo.ngaytabennhau.repository.model.LoveDate
+import com.kietngo.ngaytabennhau.repository.model.Quote
 import com.kietngo.ngaytabennhau.repository.model.User
 import com.kietngo.ngaytabennhau.repository.repository.ColorRepository
 import com.kietngo.ngaytabennhau.repository.repository.LoveDateRepository
+import com.kietngo.ngaytabennhau.repository.repository.QuoteRepository
 import com.kietngo.ngaytabennhau.repository.repository.UserRepository
 import com.kietngo.ngaytabennhau.ui.model.ButtonUi
 import com.kietngo.ngaytabennhau.ui.model.ColorUi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import timber.log.Timber
+import kotlin.random.Random
 
 class HomeViewModel constructor(
     private val application: Application
@@ -22,24 +27,25 @@ class HomeViewModel constructor(
     private val userRepository : UserRepository
     private val colorRepository : ColorRepository
     private val loveDateRepository : LoveDateRepository
+    private val quoteRepository: QuoteRepository
 
     //TODO: Color dialogFragment
     val listColor : LiveData<List<ColorUi>>
 
     val loveDate : LiveData<LoveDate>
 
-//    // chuyen toi man hinh quote
-//    private val _navigateQuoteFragment = MutableLiveData<Event<NavDirections>>()
-//    val navigateQuoteFragment : LiveData<Event<NavDirections>> = _navigateQuoteFragment
-//
-//    private val _btnQuoteFragment = MutableLiveData<ButtonUi>().apply {
-//        value = ButtonUi(
-//            onClick = {
-//                _navigateQuoteFragment.postValue(Event(HomeFragmentDirections.actionHomeFragmentToQuoteFragment()))
-//            }
-//        )
-//    }
-//    val btnQuoteFragment : LiveData<ButtonUi> = _btnQuoteFragment
+    //TODO: chuyen toi man hinh quote
+    private val _navigateQuoteFragment = MutableLiveData<Event<NavDirections>>()
+    val navigateQuoteFragment : LiveData<Event<NavDirections>> = _navigateQuoteFragment
+
+    private val _btnQuoteFragment = MutableLiveData<ButtonUi>().apply {
+        value = ButtonUi(
+            onClick = {
+                _navigateQuoteFragment.postValue(Event(HomeFragmentDirections.actionHomeFragmentToQuoteFragment()))
+            }
+        )
+    }
+    val btnQuoteFragment : LiveData<ButtonUi> = _btnQuoteFragment
 //
 //
 //    // chuyen den man hinh date
@@ -118,12 +124,14 @@ class HomeViewModel constructor(
 
     val user2 : LiveData<User>
 
-//
-//    private val _quoteInHomeFragment : MutableLiveData<Quote> by lazy {
-//        MutableLiveData<Quote>()
-//    }
-//
-//    val quoteInHomeFragment : LiveData<Quote> = _quoteInHomeFragment
+    //TODO: Load QuoteInHome Fragment
+    private val _quoteInHomeFragment : MutableLiveData<Quote> by lazy {
+        MutableLiveData<Quote>()
+    }
+    val quoteInHomeFragment : LiveData<Quote> = _quoteInHomeFragment
+
+
+
 
 //    //Profile Dialog
 //    val getUserInProfileDialog : MutableLiveData<User> by lazy {
@@ -258,6 +266,9 @@ class HomeViewModel constructor(
         loveDateRepository = LoveDateRepository(loveDateDao)
         loveDate = loveDateRepository.loveDate
 
+        val quoteDao = AppDatabase.getDatabase(application,viewModelScope).quoteDao()
+        quoteRepository = QuoteRepository(quoteDao)
+
     }
 
 //    fun saveUserToDb(user: User){
@@ -267,15 +278,15 @@ class HomeViewModel constructor(
 //        Timber.d("Update user to database")
 //    }
 //
-//    fun randomQuoteWithInt(number : Int){
-//        viewModelScope.launch(Dispatchers.IO){
-//            val randomQuoteToList = database.quoteDao().loadQuoteWithId(number)
-//            withContext(Dispatchers.Main){
-//               _quoteInHomeFragment.postValue(randomQuoteToList)
-//            }
-//        }
-//    }
-//
+    fun randomQuoteWithInt(number : Int){
+        viewModelScope.launch(Dispatchers.IO){
+            val randomQuoteToList = quoteRepository.loadQuoteWithId(number)
+            withContext(Dispatchers.Main){
+                _quoteInHomeFragment.postValue(randomQuoteToList)
+            }
+        }
+    }
+
     fun saveColorLove(color : String){
         viewModelScope.launch (Dispatchers.IO){
             val saveLoveDate = loveDate.value
@@ -293,6 +304,7 @@ class HomeViewModel constructor(
 
         }
     }
+
 //
 //    private fun setDay(calendar: Calendar): String{
 //        val today: Calendar = Calendar.getInstance()

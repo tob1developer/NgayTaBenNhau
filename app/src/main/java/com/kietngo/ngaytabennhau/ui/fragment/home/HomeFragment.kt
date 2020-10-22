@@ -11,12 +11,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.kietngo.ngaytabennhau.R
 import com.kietngo.ngaytabennhau.databinding.FragmentHomeBinding
 import com.kietngo.ngaytabennhau.repository.*
 import com.kietngo.ngaytabennhau.repository.model.Quote
+import com.kietngo.ngaytabennhau.ui.fragment.quote.QuoteViewModel
 import com.kietngo.ngaytabennhau.ui.fragment.shareviewModel.ShareHomeQuoteViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class HomeFragment : Fragment() {
@@ -42,9 +46,14 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-//        viewModel.btnQuoteFragment.observe(viewLifecycleOwner, {btn ->
-//            binding.cardViewQuote.setOnClickListener{ btn.onClick() }
-//        })
+        //TODO: Navigate to Quote Fragment
+        viewModel.btnQuoteFragment.observe(viewLifecycleOwner, {btn ->
+            binding.cardViewQuote.setOnClickListener{ btn.onClick() }
+        })
+        viewModel.navigateQuoteFragment.observe(viewLifecycleOwner, EventObserver{
+            findNavController().navigate(it)
+            Timber.d("Navigate Quote Fragment")
+        })
 //
 //        viewModel.btnDateFragment.observe(viewLifecycleOwner,{btn ->
 //            binding.cardViewDate.setOnClickListener{ btn.onClick() }
@@ -77,8 +86,11 @@ class HomeFragment : Fragment() {
 
         //TODO: Set color with change color
         viewModel.loveDate.observe(viewLifecycleOwner, {loveDate ->
-            val colorSet = Color.parseColor(loveDate.loveColor)
-            binding.btnFavorite.setColorFilter(colorSet)
+            if(loveDate != null){
+                val colorSet = Color.parseColor(loveDate.loveColor)
+                binding.btnFavorite.setColorFilter(colorSet)
+            }
+
         })
 
 //
@@ -87,10 +99,7 @@ class HomeFragment : Fragment() {
 //            Timber.d("Navigate Date Fragment")
 //        })
 //
-//        viewModel.navigateQuoteFragment.observe(viewLifecycleOwner, EventObserver{
-//            findNavController().navigate(it)
-//            Timber.d("Navigate Quote Fragment")
-//        })
+
 //
 //        viewModel.navigateSettingFragment.observe(viewLifecycleOwner, EventObserver{
 //            findNavController().navigate(it)
@@ -99,7 +108,6 @@ class HomeFragment : Fragment() {
 //
 
         //TODO:  navigate to Profile Fragment
-
         viewModel.btnProfileDialogFragmentUser1.observe(viewLifecycleOwner, {btn ->
             binding.avatarPerson1.setOnClickListener {
                 btn.onClick()
@@ -120,7 +128,6 @@ class HomeFragment : Fragment() {
 
 
         // TODO: load user to view
-
         viewModel.user1.observe(viewLifecycleOwner, { user ->
            if(user != null){
                 binding.avatarPerson1.setImageBitmap(user.avatar)
@@ -139,16 +146,17 @@ class HomeFragment : Fragment() {
             }
           })
 
-//
-//        val quote = Observer<Quote> {
-//            binding.textViewQuote.text = it.content
-//        }
-//        viewModel.quoteInHomeFragment.observe(viewLifecycleOwner, quote)
-//
-//        //get id to the quote
-//        shareViewModel.numberIdQuote.observe(viewLifecycleOwner, {
-//            viewModel.randomQuoteWithInt(it)
-//        })
+        //TODO: get id to the quote
+        shareViewModel.numberIdQuote.observe(viewLifecycleOwner, {
+            viewModel.randomQuoteWithInt(it)
+        })
+
+        //TODO: set quote
+        viewModel.quoteInHomeFragment.observe(viewLifecycleOwner,{quote ->
+            if (quote !=null){
+                binding.textViewQuote.text = quote.content
+            }
+        })
 //
 //        //bo sung
 //        val topTitle = Observer<String> {
@@ -164,6 +172,8 @@ class HomeFragment : Fragment() {
 //        viewModel.topTitle.observe(viewLifecycleOwner,topTitle)
 //        viewModel.bottomTitle.observe(viewLifecycleOwner,bottomTitle)
 //        viewModel.dayTogether.observe(viewLifecycleOwner,dayTogether)
+
+
     }
     private fun setGenderWithUser(code: Int, btn: ImageButton){
         val imageMale = R.drawable.ic_male_black

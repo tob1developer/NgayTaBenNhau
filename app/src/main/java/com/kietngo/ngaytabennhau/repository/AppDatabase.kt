@@ -92,6 +92,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val color = Color(tmp, "quote Color",color)
                 colorDao.insertColor(color)
             }
+
             Timber.d("Khoi tao Color")
         }
 
@@ -113,7 +114,23 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         fun populateQuoteDatabase(quoteDao: QuoteDao){
-            // TODO: create Quote
+            var quote = Quote(1,"1")
+            quoteDao.insertQuote(quote)
+            quote = Quote(2,"2")
+            quoteDao.insertQuote(quote)
+            quote = Quote(3,"3")
+            quoteDao.insertQuote(quote)
+            quote = Quote(4,"4")
+            quoteDao.insertQuote(quote)
+            quote = Quote(5,"5")
+            quoteDao.insertQuote(quote)
+            Timber.d("khoi tao quote")
+
+        }
+
+        private fun addQuote(quoteDao: QuoteDao,id: Int, content: String){
+            val quote = Quote(id, content)
+            quoteDao.insertQuote(quote)
         }
 
         fun populateUserDatabase(userDao: UserDao, context: Context){
@@ -130,6 +147,7 @@ abstract class AppDatabase : RoomDatabase() {
                 COLOR_DEFAULT
             )
             userDao.insertUser(defaultUser1)
+
             //User 2
             val defaultUser2 = User(
                 ID_USER_2,
@@ -139,10 +157,7 @@ abstract class AppDatabase : RoomDatabase() {
                 GENDER_FEMALE,
                 COLOR_DEFAULT
             )
-
             userDao.insertUser(defaultUser2)
-
-
         }
     }
 

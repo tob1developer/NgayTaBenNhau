@@ -9,5 +9,5 @@ data class Quote(
     @PrimaryKey
     val id: Int,
     @ColumnInfo(name = "content")
-    val content: String?,
+    val content: String,
 )
