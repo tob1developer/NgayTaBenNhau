@@ -1,6 +1,6 @@
 package com.kietngo.ngaytabennhau.repository
 
-const val NAME_DATABASE : String =          "beenTogether-1-1"
+const val NAME_DATABASE : String =          "beenTogether-1-2"
 const val VERSION_DATABASE : Int =          1
 const val ID_USER_1 : Int =                 1
 const val ID_USER_2 : Int =                 2
@@ -23,4 +23,7 @@ const val COLOR_DEFAULT = "#FFFFFF"
 
 const val NICK_NAME_DEFAULT  = "default nick name"
 const val BIRTH_DAY_DEFAULT = "28/12/1999"
+
+const val TURN_OFF_NOTIFICATION =   0
+const val TURN_ON_NOTIFICATION =    1
 

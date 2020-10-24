@@ -63,21 +63,20 @@ class HomeViewModel constructor(
 //    val btnDateFragment : LiveData<ButtonUi> = _btnDateFragment
 //
 //
-//    //chuyen den man hinh setting
-//    private val _navigateSettingFragment = MutableLiveData<Event<NavDirections>>()
-//    val navigateSettingFragment : LiveData<Event<NavDirections>> = _navigateSettingFragment
-//
-//    private val _btnSettingFragment = MutableLiveData<ButtonUi>().apply {
-//        value = ButtonUi (
-//            onClick ={
-//                val action = HomeFragmentDirections.actionHomeFragmentToSettingFragment()
-//                _navigateSettingFragment.postValue(Event(action))
-//            }
-//        )
-//    }
-//    val btnSettingFragment : LiveData<ButtonUi> = _btnSettingFragment
-//
-//
+    //TODO: chuyen den man hinh setting
+    private val _navigateSettingFragment = MutableLiveData<Event<NavDirections>>()
+    val navigateSettingFragment : LiveData<Event<NavDirections>> = _navigateSettingFragment
+
+    private val _btnSettingFragment = MutableLiveData<ButtonUi>().apply {
+        value = ButtonUi (
+            onClick ={
+                val action = HomeFragmentDirections.actionHomeFragmentToSettingFragment()
+                _navigateSettingFragment.postValue(Event(action))
+            }
+        )
+    }
+    val btnSettingFragment : LiveData<ButtonUi> = _btnSettingFragment
+
     //chuyen den man hinh Profile dialog
     private val _navigateProfileDialogFragment = MutableLiveData<Event<Int>>()
     val navigateProfileDialogFragment : LiveData<Event<Int>> = _navigateProfileDialogFragment

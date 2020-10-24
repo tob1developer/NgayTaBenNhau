@@ -1,5 +1,6 @@
 package com.kietngo.ngaytabennhau.repository
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.BitmapFactory
 import androidx.room.Database
@@ -16,6 +17,7 @@ import com.kietngo.ngaytabennhau.repository.model.Color
 import com.kietngo.ngaytabennhau.repository.model.LoveDate
 import com.kietngo.ngaytabennhau.repository.model.Quote
 import com.kietngo.ngaytabennhau.repository.model.User
+import com.kietngo.ngaytabennhau.ui.notification.NotificationLove
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -106,7 +108,8 @@ abstract class AppDatabase : RoomDatabase() {
                     TOP_TITLE_DEFAULT,
                     BOTTOM_TITLE_DEFAULT,
                     bitmapDefaultWallPage,
-                    COLOR_DEFAULT
+                    COLOR_DEFAULT,
+                    TURN_OFF_NOTIFICATION
                 )
                 loveDateDao.insertLoveDate(loveDate)
 
@@ -159,6 +162,19 @@ abstract class AppDatabase : RoomDatabase() {
             )
             userDao.insertUser(defaultUser2)
         }
+
+//        fun statusNotification(context: Context, activity: Activity, loveDateDao: LoveDateDao){
+//            val loveDate = loveDateDao.loadLoveDate(ID_LOVE_DATE).value
+//            if(loveDate != null){
+//                val status = loveDate.statusNotification
+//                val notification = NotificationLove(context,activity)
+//                if (status == TURN_ON_NOTIFICATION)
+//                    notification.turnOnNotification()
+//                else  if (status == TURN_OFF_NOTIFICATION)
+//                    notification.cancelNotification()
+//            }
+//
+//        }
     }
 
 

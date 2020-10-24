@@ -20,4 +20,6 @@ data class LoveDate(
     var wallPage: Bitmap?,
     @ColumnInfo(name = "love_color")
     var loveColor: String?,
+    @ColumnInfo(name ="status_notification")
+    var statusNotification : Int
     )

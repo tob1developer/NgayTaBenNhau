@@ -59,9 +59,17 @@ class HomeFragment : Fragment() {
 //            binding.cardViewDate.setOnClickListener{ btn.onClick() }
 //        })
 //
-//        viewModel.btnSettingFragment.observe(viewLifecycleOwner, {btn ->
-//            binding.btnSetting.setOnClickListener { btn.onClick() }
-//        })
+
+        //TODO: Navigate to Setting
+        viewModel.btnSettingFragment.observe(viewLifecycleOwner, {btn ->
+            binding.btnSetting.setOnClickListener { btn.onClick() }
+        })
+        
+        viewModel.navigateSettingFragment.observe(viewLifecycleOwner, EventObserver{
+            findNavController().navigate(it)
+            Timber.d("Navigate Setting Fragment")
+        })
+
 //
 //        viewModel.btnProfileDialogFragment.observe(viewLifecycleOwner, {btn->
 //            binding.avatarPerson1.setOnClickListener {
@@ -100,12 +108,7 @@ class HomeFragment : Fragment() {
 //        })
 //
 
-//
-//        viewModel.navigateSettingFragment.observe(viewLifecycleOwner, EventObserver{
-//            findNavController().navigate(it)
-//            Timber.d("Navigate Setting Fragment")
-//        })
-//
+
 
         //TODO:  navigate to Profile Fragment
         viewModel.btnProfileDialogFragmentUser1.observe(viewLifecycleOwner, {btn ->
