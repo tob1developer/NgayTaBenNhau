@@ -11,13 +11,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_dateFragment"
-            app:destination="@id/dateFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/action_homeFragment_to_settingFragment"
             app:destination="@id/settingFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -43,6 +36,18 @@
             android:id="@+id/action_homeFragment_to_colorDialogFragment"
             app:destination="@id/colorDialogFragment" >
 
+        </action>
+        <action
+            android:id="@+id/action_homeFragment_to_dialogOptionFragment"
+            app:destination="@id/dialogOptionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_dialogChangeTitleFragment"
+            app:destination="@id/dialogChangeTitleFragment" >
+            <argument
+                android:name="typeTitle"
+                app:argType="string"
+                android:defaultValue="nothing"
+                />
         </action>
     </fragment>
     <fragment
@@ -110,4 +115,18 @@
         android:id="@+id/datePickerTogetherFragment"
         android:name="com.kietngo.ngaytabennhau.ui.fragment.date.dialog.DatePickerTogetherFragment"
         android:label="DatePickerTogetherFragment" />
+    <dialog
+        android:id="@+id/dialogOptionFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.option.DialogOptionFragment"
+        android:label="fragment_dialog_option"
+        tools:layout="@layout/fragment_dialog_option" >
+        <action
+            android:id="@+id/action_dialogOptionFragment_to_dateFragment"
+            app:destination="@id/dateFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/dialogChangeTitleFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.dialog.title.DialogChangeTitleFragment"
+        android:label="fragment_dialog_change_title"
+        tools:layout="@layout/fragment_dialog_change_title" />
 </navigation>

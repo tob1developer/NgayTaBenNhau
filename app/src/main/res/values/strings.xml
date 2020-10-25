@@ -36,4 +36,9 @@
     <string name="ba_cham">...</string>
     <string name="default_date_of_birth">28/12/99</string>
     <string name="_15_day">15 day</string>
+    <string name="change_top_title">Change Top Title</string>
+    <string name="change_bottom_title">Change Bottom Title</string>
+    <string name="change_wall_papper">Change Wall Papper</string>
+    <string name="change_text_tv">Thay đổi title...</string>
+    <string name="save">Save</string>
 </resources>

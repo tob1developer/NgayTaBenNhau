@@ -36,11 +36,8 @@
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_btn_date"
-            android:fontFamily="@font/iciel_finch_bold"
             android:text="@string/cancel"
-            android:textColor="@color/mau_trang"
-            android:textSize="@dimen/text_size_30"
+            style="@style/style_button_dialog"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />

@@ -34,8 +34,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    //Default ID
-    private var idInProfileDialogFragment = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,11 +52,17 @@ class HomeFragment : Fragment() {
             findNavController().navigate(it)
             Timber.d("Navigate Quote Fragment")
         })
-//
-//        viewModel.btnDateFragment.observe(viewLifecycleOwner,{btn ->
-//            binding.cardViewDate.setOnClickListener{ btn.onClick() }
-//        })
-//
+
+        //TODO: Navigate to Option Fragment
+        viewModel.btnOptionDialog.observe(viewLifecycleOwner, {btn ->
+            binding.cardViewDate.setOnClickListener {
+                btn.onClick()
+            }
+        })
+
+        viewModel.navigateOptionDialog.observe(viewLifecycleOwner, EventObserver{
+            findNavController().navigate(it)
+        })
 
         //TODO: Navigate to Setting
         viewModel.btnSettingFragment.observe(viewLifecycleOwner, {btn ->
@@ -70,18 +74,7 @@ class HomeFragment : Fragment() {
             Timber.d("Navigate Setting Fragment")
         })
 
-//
-//        viewModel.btnProfileDialogFragment.observe(viewLifecycleOwner, {btn->
-//            binding.avatarPerson1.setOnClickListener {
-//                btn.onClick()
-//                idInProfileDialogFragment = ID_USER_1
-//            }
-//
-//            binding.avatarPerson2.setOnClickListener {
-//                btn.onClick()
-//                idInProfileDialogFragment = ID_USER_2
-//            }
-//        })
+
         //TODO: go to select color of Heart
         viewModel.btnGetColor.observe(viewLifecycleOwner, {btn ->
             binding.btnFavorite.setOnClickListener { btn.onClick() }
@@ -92,23 +85,17 @@ class HomeFragment : Fragment() {
             Timber.d("navigate Color Dialog Fragment")
         })
 
-        //TODO: Set color with change color
+        //TODO: Set love date
         viewModel.loveDate.observe(viewLifecycleOwner, {loveDate ->
             if(loveDate != null){
                 val colorSet = Color.parseColor(loveDate.loveColor)
                 binding.btnFavorite.setColorFilter(colorSet)
+
+                binding.tvTopTitle.text = loveDate.topTitle
+                binding.bottomTitle.text = loveDate.bottomTitle
             }
 
         })
-
-//
-//        viewModel.navigateDateFragment.observe(viewLifecycleOwner, EventObserver{
-//            findNavController().navigate(it)
-//            Timber.d("Navigate Date Fragment")
-//        })
-//
-
-
 
         //TODO:  navigate to Profile Fragment
         viewModel.btnProfileDialogFragmentUser1.observe(viewLifecycleOwner, {btn ->
@@ -160,6 +147,7 @@ class HomeFragment : Fragment() {
                 binding.textViewQuote.text = quote.content
             }
         })
+
 //
 //        //bo sung
 //        val topTitle = Observer<String> {

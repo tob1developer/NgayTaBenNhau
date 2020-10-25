@@ -10,4 +10,19 @@
         <item name="colorControlActivated">#F44336</item>
         <item name="colorControlNormal">#F44336</item>
     </style>
+    <style name="style_button_option">
+        <item name="android:textSize">30sp</item>
+        <item name="android:padding">@dimen/size_15</item>
+        <item name="android:background" >@drawable/custom_btn_date</item>
+        <item name="android:backgroundTint">@color/color_in_notification</item>
+        <item name="android:layout_margin">@dimen/size_2</item>
+        <item name="android:fontFamily">@font/iciel_finch_bold</item>
+    </style>
+    <style name="style_button_dialog">
+        <item name="android:background">@drawable/custom_btn_date</item>
+        <item name="android:fontFamily">@font/iciel_finch_bold</item>
+        <item name="android:textColor">@color/mau_trang</item>
+        <item name="android:textSize">@dimen/text_size_30</item>
+        <item name="android:layout_margin">@dimen/margin_5</item>
+    </style>
 </resources>

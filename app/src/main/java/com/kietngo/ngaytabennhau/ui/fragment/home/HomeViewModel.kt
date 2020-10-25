@@ -46,23 +46,23 @@ class HomeViewModel constructor(
         )
     }
     val btnQuoteFragment : LiveData<ButtonUi> = _btnQuoteFragment
-//
-//
-//    // chuyen den man hinh date
-//    private val _navigateDateFragment = MutableLiveData<Event<NavDirections>>()
-//    val navigateDateFragment : LiveData<Event<NavDirections>> = _navigateDateFragment
-//
-//    private val _btnDateFragment = MutableLiveData<ButtonUi>().apply {
-//        value = ButtonUi(
-//            onClick = {
-//                val action = HomeFragmentDirections.actionHomeFragmentToDateFragment()
-//                _navigateDateFragment.postValue(Event(action))
-//            }
-//        )
-//    }
-//    val btnDateFragment : LiveData<ButtonUi> = _btnDateFragment
-//
-//
+
+    //TODO: chuyen toi dialog option
+    private val _btnOptionDialog =
+        MutableLiveData<ButtonUi>().apply {
+            value = ButtonUi(
+                onClick = {
+                    val action = HomeFragmentDirections.actionHomeFragmentToDialogOptionFragment()
+                    _navigateOptionDialog.postValue(Event(action))
+                    Timber.d("navigate to option dialog")
+                }
+            )
+        }
+    val btnOptionDialog : LiveData<ButtonUi> = _btnOptionDialog
+
+    private val _navigateOptionDialog = MutableLiveData<Event<NavDirections>>()
+    val navigateOptionDialog: LiveData<Event<NavDirections>> = _navigateOptionDialog
+
     //TODO: chuyen den man hinh setting
     private val _navigateSettingFragment = MutableLiveData<Event<NavDirections>>()
     val navigateSettingFragment : LiveData<Event<NavDirections>> = _navigateSettingFragment
@@ -312,5 +312,28 @@ class HomeViewModel constructor(
 //        val day = time/(1000*60*60*24)
 //        return "$day day"
 //    }
+
+    //TODO: set top and bottom title
+    fun changeTopTitle(title : String){
+        var loveDate = loveDate.value
+        if(loveDate !=null){
+            loveDate.topTitle = title
+            viewModelScope.launch(Dispatchers.IO){
+                loveDateRepository.updateLoveDate(loveDate)
+            }
+            Timber.d("change top title")
+        }
+    }
+
+    fun changeBottomTitle(title : String){
+        var loveDate = loveDate.value
+        if(loveDate !=null){
+            loveDate.bottomTitle = title
+            viewModelScope.launch(Dispatchers.IO){
+                loveDateRepository.updateLoveDate(loveDate)
+            }
+            Timber.d("change bottom title")
+        }
+    }
 }
 
