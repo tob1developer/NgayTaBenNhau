@@ -1,6 +1,6 @@
 package com.kietngo.ngaytabennhau.repository
 
-const val NAME_DATABASE : String =          "beenTogether-1-2"
+const val NAME_DATABASE : String =          "beenTogether-1-4"
 const val VERSION_DATABASE : Int =          1
 const val ID_USER_1 : Int =                 1
 const val ID_USER_2 : Int =                 2

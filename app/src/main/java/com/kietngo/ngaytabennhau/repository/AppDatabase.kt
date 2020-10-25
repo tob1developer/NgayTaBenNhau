@@ -2,6 +2,7 @@ package com.kietngo.ngaytabennhau.repository
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.room.Database
 import androidx.room.Room
@@ -99,15 +100,16 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         fun populateLoveDateDatabase(loveDateDao: LoveDateDao, context: Context){
-            val bitmapDefaultWallPage
-                    = BitmapFactory.decodeResource(context.resources,R.drawable.whilte_wall_pager)
+            val bitmap = Bitmap.createBitmap(400,400,Bitmap.Config.ARGB_8888)
+            bitmap.eraseColor(android.graphics.Color.WHITE)
+
                 val calendar = Calendar.getInstance()
                 val loveDate = LoveDate(
                     ID_LOVE_DATE,
                     calendar,
                     TOP_TITLE_DEFAULT,
                     BOTTOM_TITLE_DEFAULT,
-                    bitmapDefaultWallPage,
+                    bitmap,
                     COLOR_DEFAULT,
                     TURN_OFF_NOTIFICATION
                 )
@@ -137,6 +139,8 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         fun populateUserDatabase(userDao: UserDao, context: Context){
+
+
             val bitmapDefault
                     = BitmapFactory.decodeResource(context.resources,R.drawable.avatar_image_view)
 

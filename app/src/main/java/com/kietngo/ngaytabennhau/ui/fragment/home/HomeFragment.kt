@@ -1,12 +1,14 @@
 package com.kietngo.ngaytabennhau.ui.fragment.home
 
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -22,6 +24,7 @@ import com.kietngo.ngaytabennhau.ui.fragment.shareviewModel.ShareHomeQuoteViewMo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.*
 
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
@@ -93,8 +96,14 @@ class HomeFragment : Fragment() {
 
                 binding.tvTopTitle.text = loveDate.topTitle
                 binding.bottomTitle.text = loveDate.bottomTitle
-            }
+                val day = loveDate.startDate?.let { setDay(it) }
+                binding.tvDayTogether.text = day
 
+                val bitmapDrawable = BitmapDrawable(resources, loveDate.wallPage)
+                val layout = activity?.findViewById<ConstraintLayout>(R.id.backgroundActivity)
+                layout?.background = bitmapDrawable
+
+            }
         })
 
         //TODO:  navigate to Profile Fragment
@@ -148,23 +157,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-//
-//        //bo sung
-//        val topTitle = Observer<String> {
-//            binding.tvTopTitle.text = it
-//        }
-//        val bottomTitle = Observer<String> {
-//            binding.bottomTitle.text = it
-//        }
-//        val dayTogether = Observer<String> {
-//            binding.tvDayTogether.text = it
-//        }
-//
-//        viewModel.topTitle.observe(viewLifecycleOwner,topTitle)
-//        viewModel.bottomTitle.observe(viewLifecycleOwner,bottomTitle)
-//        viewModel.dayTogether.observe(viewLifecycleOwner,dayTogether)
-
-
     }
     private fun setGenderWithUser(code: Int, btn: ImageButton){
         val imageMale = R.drawable.ic_male_black
@@ -180,5 +172,13 @@ class HomeFragment : Fragment() {
             GENDER_LESS ->      btn.setImageResource(imageLes)
             else ->             btn.setImageResource(imagePrivateGender)
         }
+    }
+
+    private fun setDay(calendar: Calendar): String{
+        val today: Calendar = Calendar.getInstance()
+        val time = today.time.time - calendar.time.time
+
+        val day = time/(1000*60*60*24)
+        return "$day day"
     }
 }

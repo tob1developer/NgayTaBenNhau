@@ -69,7 +69,7 @@ class OptionViewModel constructor(
         MutableLiveData<ButtonUi>().apply {
             value = ButtonUi(
                 onClick = {
-
+                    _navigateChangeWallPage.postValue(Event(true))
                 }
             )
         }

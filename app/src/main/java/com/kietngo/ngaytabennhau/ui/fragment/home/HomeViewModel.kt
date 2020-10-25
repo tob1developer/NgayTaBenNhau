@@ -1,6 +1,7 @@
 package com.kietngo.ngaytabennhau.ui.fragment.home
 
 import android.app.Application
+import android.graphics.Bitmap
 import android.widget.Toast
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
@@ -315,24 +316,35 @@ class HomeViewModel constructor(
 
     //TODO: set top and bottom title
     fun changeTopTitle(title : String){
-        var loveDate = loveDate.value
-        if(loveDate !=null){
-            loveDate.topTitle = title
+        var loveDateChange = loveDate.value
+        if(loveDateChange !=null){
+            loveDateChange.topTitle = title
             viewModelScope.launch(Dispatchers.IO){
-                loveDateRepository.updateLoveDate(loveDate)
+                loveDateRepository.updateLoveDate(loveDateChange)
             }
             Timber.d("change top title")
         }
     }
 
     fun changeBottomTitle(title : String){
-        var loveDate = loveDate.value
-        if(loveDate !=null){
-            loveDate.bottomTitle = title
+        var loveDateChange = loveDate.value
+        if(loveDateChange !=null){
+            loveDateChange.bottomTitle = title
             viewModelScope.launch(Dispatchers.IO){
-                loveDateRepository.updateLoveDate(loveDate)
+                loveDateRepository.updateLoveDate(loveDateChange)
             }
             Timber.d("change bottom title")
+        }
+    }
+
+    fun changeWallPage(bitmap: Bitmap){
+        val loveDateChange = loveDate.value
+        if(loveDateChange != null){
+            loveDateChange.wallPage = bitmap
+            viewModelScope.launch(Dispatchers.IO){
+                loveDateRepository.updateLoveDate(loveDateChange)
+            }
+            Timber.d("change wall page")
         }
     }
 }
