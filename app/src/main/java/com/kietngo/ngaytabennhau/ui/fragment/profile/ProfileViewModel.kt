@@ -1,16 +1,18 @@
 package com.kietngo.ngaytabennhau.ui.fragment.profile
 
 import android.app.Application
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.widget.Toast
+import androidx.lifecycle.*
 import com.kietngo.ngaytabennhau.repository.*
+import com.kietngo.ngaytabennhau.repository.model.Color
 import com.kietngo.ngaytabennhau.repository.model.User
+import com.kietngo.ngaytabennhau.repository.repository.ColorRepository
 import com.kietngo.ngaytabennhau.repository.repository.UserRepository
 import com.kietngo.ngaytabennhau.ui.model.ButtonUi
+import com.kietngo.ngaytabennhau.ui.model.ColorUi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.*
 
 class ProfileViewModel constructor(
@@ -20,6 +22,24 @@ class ProfileViewModel constructor(
 
     var user1 : LiveData<User>
     var user2 : LiveData<User>
+
+    private val colorRepository: ColorRepository
+    val listColor : LiveData<List<ColorUi>>
+
+    //TODO: btn Change Border color
+    private val _btnChangeBorder
+            = MutableLiveData<ButtonUi>().apply {
+        value = ButtonUi (
+            onClick = {
+                _navigateChangeBorder.postValue(Event(true))
+            }
+        )
+    }
+    val btnChangBorder : LiveData<ButtonUi> = _btnChangeBorder
+
+    private val _navigateChangeBorder = MutableLiveData<Event<Boolean>>()
+    val navigateChangeBorder : LiveData<Event<Boolean>> = _navigateChangeBorder
+
 
     // TODO: Btn change Avatar
     private val _navigateToGallery = MutableLiveData<Event<Boolean>>()
@@ -85,11 +105,64 @@ class ProfileViewModel constructor(
 
         user1 = userRepository.user1
         user2 = userRepository.user2
+
+        val colorDao = AppDatabase.getDatabase(application,viewModelScope).colorDao()
+        colorRepository = ColorRepository(colorDao)
+
+        listColor = colorRepository.listColor.map {
+            it.map { colorToList ->
+                ColorUi(
+                    color = colorToList,
+                    onClick = {
+                    }
+                )
+            }
+        }
+
     }
 
     //TODO: Save profile to database
     fun saveProfileUser(user: User) = viewModelScope.launch(Dispatchers.IO ){
         userRepository.updateUser(user)
     }
+
+    fun saveColorLove(color : String, id: Int){
+        viewModelScope.launch (Dispatchers.IO){
+
+            if (id == ID_USER_1 ) {
+                val user = user1.value
+                if (user != null){
+                    user.borderColor = color
+                    viewModelScope.launch(Dispatchers.IO){
+                        Timber.d("check color $color , ${user.borderColor}")
+                        userRepository.updateUser(user)
+                    }
+                }
+                else
+                    Toast.makeText(
+                        application,
+                        "Gặp sự cố, không thể save.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+            }
+            if (id == ID_USER_2 ) {
+                val user = user2.value
+                if (user != null){
+                    user.borderColor = color
+                    viewModelScope.launch(Dispatchers.IO){
+                        userRepository.updateUser(user)
+                    }
+                }
+                else
+                    Toast.makeText(
+                        application,
+                        "Gặp sự cố, không thể save.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+            }
+
+        }
+    }
+
 
 }

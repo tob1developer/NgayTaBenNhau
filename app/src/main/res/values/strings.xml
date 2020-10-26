@@ -41,4 +41,5 @@
     <string name="change_wall_papper">Change Wall Papper</string>
     <string name="change_text_tv">Thay đổi title...</string>
     <string name="save">Save</string>
+    <string name="change_border">Change Border Avatar</string>
 </resources>

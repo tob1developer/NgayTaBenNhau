@@ -5,38 +5,45 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kietngo.ngaytabennhau.R
-import com.kietngo.ngaytabennhau.databinding.DialogFragmentColorBinding
-import com.kietngo.ngaytabennhau.repository.model.Color
-import com.kietngo.ngaytabennhau.ui.fragment.home.HomeViewModel
-import com.kietngo.ngaytabennhau.ui.model.ColorUi
+import com.kietngo.ngaytabennhau.databinding.FragmentColorBorderDialogBinding
+import com.kietngo.ngaytabennhau.repository.ID_USER_1
+import com.kietngo.ngaytabennhau.ui.fragment.profile.ProfileDialogFragment
+import com.kietngo.ngaytabennhau.ui.fragment.profile.ProfileViewModel
 import timber.log.Timber
 
 
-class ColorDialogFragment : DialogFragment() {
-    private lateinit var binding : DialogFragmentColorBinding
-    private lateinit var colorAdapter : ColorAdapter
+class ColorBorderDialogFragment : DialogFragment() {
 
-    private val viewModel : HomeViewModel by activityViewModels()
+    private lateinit var binding: FragmentColorBorderDialogBinding
+    private lateinit var colorAdapter : ColorAdapter
+    private val viewModel : ProfileViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DialogFragmentColorBinding.inflate(inflater, container, false)
+        binding = FragmentColorBorderDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        val idUser = arguments?.getInt("idUserToBorder")
+
+        Timber.d("check id $idUser")
         colorAdapter = ColorAdapter()
         colorAdapter.onNavigateUp = {
-
-            viewModel.saveColorLove(it)
+            if (idUser != null){
+                viewModel.saveColorLove(it,idUser)
+            }else{
+                Toast.makeText(requireContext(),"Lỗi không thể thay đổi!",Toast.LENGTH_SHORT).show()
+            }
             findNavController().navigateUp()
         }
 
@@ -57,4 +64,6 @@ class ColorDialogFragment : DialogFragment() {
 
 
     }
+
+
 }

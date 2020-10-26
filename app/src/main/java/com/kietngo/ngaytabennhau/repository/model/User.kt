@@ -18,5 +18,5 @@ data class User (
     @ColumnInfo(name = "gender")
     var gender: Int,
     @ColumnInfo(name = "border_color")
-    val borderColor: String
+    var borderColor: String
 )

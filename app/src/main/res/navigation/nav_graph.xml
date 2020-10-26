@@ -81,10 +81,18 @@
         <action
             android:id="@+id/action_profileDialogFragment_to_datePickerFragment"
             app:destination="@id/datePickerFragment" />
+        <action
+            android:id="@+id/action_profileDialogFragment_to_colorBorderDialogFragment"
+            app:destination="@id/colorBorderDialogFragment" >
+            <argument
+                android:name="idUserToBorder"
+                app:argType="integer"
+                android:defaultValue="0" />
+        </action>
     </fragment>
     <dialog
         android:id="@+id/colorDialogFragment"
-        android:name="com.kietngo.ngaytabennhau.ui.dialog.color.ColorDialogFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.dialog.color.ColorHeartDialogFragment"
         android:label="dialog_fragment_color"
         tools:layout="@layout/dialog_fragment_color" >
         <action
@@ -119,4 +127,8 @@
         android:name="com.kietngo.ngaytabennhau.ui.dialog.title.DialogChangeTitleFragment"
         android:label="fragment_dialog_change_title"
         tools:layout="@layout/fragment_dialog_change_title" />
+    <dialog
+        android:id="@+id/colorBorderDialogFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.dialog.color.ColorBorderDialogFragment"
+        android:label="ColorBorderDialogFragment" />
 </navigation>

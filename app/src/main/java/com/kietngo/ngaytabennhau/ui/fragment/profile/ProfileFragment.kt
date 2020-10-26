@@ -55,18 +55,41 @@ class ProfileDialogFragment : Fragment() {
 
         binding.textViewName.isEnabled = false
 
-        val id = arguments?.getInt("idUser")
+        val idUser = arguments?.getInt("idUser")
         var user : LiveData<User>? = null
-
-        if(id == 1)  user = viewModel.user1
-        else if(id == 2) user = viewModel.user2
+        if(idUser == 1)  user = viewModel.user1
+        else if(idUser == 2) user = viewModel.user2
 
         user?.observe(viewLifecycleOwner, { user ->
             binding.textViewName.setText(user.nickName)
             binding.textViewDate.text = user.birthDay
             binding.imageViewAvatar.setImageBitmap(user.avatar)
             binding.imageViewAvatar.borderColor = Color.parseColor(user.borderColor)
+            Timber.d("check color ${user.borderColor}")
             viewGenderToDatabase(user.gender)
+        })
+
+        //TODO: btn change Border Color
+        viewModel.btnChangBorder.observe(viewLifecycleOwner, {btn ->
+            binding.btnChangeBorder.setOnClickListener {
+                btn.onClick()
+            }
+        })
+
+        viewModel.navigateChangeBorder.observe(viewLifecycleOwner, EventObserver{
+            if(it){
+                if(idUser != null){
+                    val action = ProfileDialogFragmentDirections
+                        .actionProfileDialogFragmentToColorBorderDialogFragment(idUser)
+                    findNavController().navigate(action)
+
+                }else{
+                    Toast.makeText(requireContext(),
+                        "Lỗi không thể sang màn hình thay đổi color!",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
         })
 
         // TODO: Btn change Avatar
