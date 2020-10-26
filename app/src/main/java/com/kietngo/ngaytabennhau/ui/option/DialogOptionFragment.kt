@@ -21,7 +21,7 @@ import com.kietngo.ngaytabennhau.ui.fragment.home.HomeViewModel
 import timber.log.Timber
 import java.io.InputStream
 
-const val SELECT_IMG_REQ_CODE = 11
+const val SELECT_IMG_REQ_CODE = 2
 class DialogOptionFragment : DialogFragment() {
 
     lateinit var binding: FragmentDialogOptionBinding
@@ -81,11 +81,23 @@ class DialogOptionFragment : DialogFragment() {
                 intent.type = "image/*"
                 intent.action = Intent.ACTION_GET_CONTENT
                 startActivityForResult(
-                    Intent.createChooser(intent, "Select Picture"),
+                    Intent.createChooser(intent, "Select Picture Wallpage"),
                     SELECT_IMG_REQ_CODE
                 )
             }
             findNavController().navigateUp()
+        })
+
+        //TODO: change date
+        viewModel.btnChangeDate.observe(viewLifecycleOwner, {btn->
+            binding.btnChangeDate.setOnClickListener {
+                btn.onClick()
+            }
+        })
+
+        viewModel.navigateChangeDate.observe(viewLifecycleOwner, EventObserver{
+            findNavController().navigateUp()
+            findNavController().navigate(it)
         })
     }
 
@@ -97,9 +109,6 @@ class DialogOptionFragment : DialogFragment() {
                 requireContext().contentResolver.openInputStream(it)
             }
             val bitmap: Bitmap = BitmapFactory.decodeStream(inputStream)
-            val bitmapDrawable = BitmapDrawable(resources, bitmap)
-            val layout = activity?.findViewById<ConstraintLayout>(R.id.backgroundActivity)
-            layout?.background = bitmapDrawable
             homeViewModel.changeWallPage(bitmap)
             Timber.d("change background")
             // dang bi loi

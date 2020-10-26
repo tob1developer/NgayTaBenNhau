@@ -49,14 +49,8 @@
                 android:defaultValue="nothing"
                 />
         </action>
-    </fragment>
-    <fragment
-        android:id="@+id/dateFragment"
-        android:name="com.kietngo.ngaytabennhau.ui.fragment.date.DateFragment"
-        android:label="fragment_date"
-        tools:layout="@layout/fragment_date" >
         <action
-            android:id="@+id/action_dateFragment_to_datePickerTogetherFragment"
+            android:id="@+id/action_homeFragment_to_datePickerTogetherFragment"
             app:destination="@id/datePickerTogetherFragment" />
     </fragment>
     <fragment
@@ -113,17 +107,13 @@
         android:label="DatePickerFragment" />
     <dialog
         android:id="@+id/datePickerTogetherFragment"
-        android:name="com.kietngo.ngaytabennhau.ui.fragment.date.dialog.DatePickerTogetherFragment"
+        android:name="com.kietngo.ngaytabennhau.ui.dialog.date.DatePickerTogetherFragment"
         android:label="DatePickerTogetherFragment" />
     <dialog
         android:id="@+id/dialogOptionFragment"
         android:name="com.kietngo.ngaytabennhau.ui.option.DialogOptionFragment"
         android:label="fragment_dialog_option"
-        tools:layout="@layout/fragment_dialog_option" >
-        <action
-            android:id="@+id/action_dialogOptionFragment_to_dateFragment"
-            app:destination="@id/dateFragment" />
-    </dialog>
+        tools:layout="@layout/fragment_dialog_option" />
     <dialog
         android:id="@+id/dialogChangeTitleFragment"
         android:name="com.kietngo.ngaytabennhau.ui.dialog.title.DialogChangeTitleFragment"

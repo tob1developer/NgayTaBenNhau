@@ -1,4 +1,4 @@
-package com.kietngo.ngaytabennhau.ui.fragment.date.dialog
+package com.kietngo.ngaytabennhau.ui.dialog.date
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -6,13 +6,12 @@ import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import com.kietngo.ngaytabennhau.ui.fragment.date.DateViewModel
 import com.kietngo.ngaytabennhau.ui.fragment.home.HomeViewModel
 import java.util.*
 
 class DatePickerTogetherFragment(): DialogFragment(), DatePickerDialog.OnDateSetListener {
 
-    private val viewModelDate : DateViewModel by activityViewModels()
+    private val viewModel : HomeViewModel by activityViewModels()
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
             val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -27,13 +26,10 @@ class DatePickerTogetherFragment(): DialogFragment(), DatePickerDialog.OnDateSet
 
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.DAY_OF_MONTH, p3)
-        calendar.set(Calendar.MONTH, p2 + 1)
+        calendar.set(Calendar.MONTH, p2)
         calendar.set(Calendar.YEAR, p1)
 
         //if change date
-        viewModelDate.getCalendarFirst.value = calendar
-        viewModelDate.setDay()
-
-        viewModelDate.saveStartDateTogether(calendar)
+        viewModel.changeDateTogether(calendar)
     }
 }

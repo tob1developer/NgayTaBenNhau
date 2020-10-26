@@ -19,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.util.*
 import kotlin.random.Random
 
 class HomeViewModel constructor(
@@ -129,7 +130,6 @@ class HomeViewModel constructor(
         MutableLiveData<Quote>()
     }
     val quoteInHomeFragment : LiveData<Quote> = _quoteInHomeFragment
-
 
 
 
@@ -345,6 +345,17 @@ class HomeViewModel constructor(
                 loveDateRepository.updateLoveDate(loveDateChange)
             }
             Timber.d("change wall page")
+        }
+    }
+
+    fun changeDateTogether(calendar: Calendar){
+        val loveDateChange = loveDate.value
+        if(loveDateChange != null){
+            loveDateChange.startDate = calendar
+            viewModelScope.launch(Dispatchers.IO){
+                loveDateRepository.updateLoveDate(loveDateChange)
+            }
+            Timber.d("change date")
         }
     }
 }

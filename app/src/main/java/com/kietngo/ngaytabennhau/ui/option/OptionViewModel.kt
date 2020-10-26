@@ -83,8 +83,9 @@ class OptionViewModel constructor(
         MutableLiveData<ButtonUi>().apply {
             value = ButtonUi(
                 onClick = {
-                    val action = DialogOptionFragmentDirections
-                        .actionDialogOptionFragmentToDateFragment()
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentToDatePickerTogetherFragment()
+
 
                     _navigateChangeDate.postValue(Event(action))
                     Timber.d("navigate to date fragment")
