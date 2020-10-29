@@ -76,9 +76,6 @@
         android:label="dialog_fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileDialogFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
             android:id="@+id/action_profileDialogFragment_to_datePickerFragment"
             app:destination="@id/datePickerFragment" />
         <action

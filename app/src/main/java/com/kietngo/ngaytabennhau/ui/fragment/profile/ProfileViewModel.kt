@@ -122,8 +122,12 @@ class ProfileViewModel constructor(
     }
 
     //TODO: Save profile to database
-    fun saveProfileUser(user: User) = viewModelScope.launch(Dispatchers.IO ){
-        userRepository.updateUser(user)
+    fun saveProfileUser(user: User)
+    {
+        viewModelScope.launch(Dispatchers.IO){
+            userRepository.updateUser(user)
+        }
+
     }
 
     fun saveColorLove(color : String, id: Int){

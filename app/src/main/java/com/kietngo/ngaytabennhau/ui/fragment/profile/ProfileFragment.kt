@@ -65,7 +65,6 @@ class ProfileDialogFragment : Fragment() {
             binding.textViewDate.text = user.birthDay
             binding.imageViewAvatar.setImageBitmap(user.avatar)
             binding.imageViewAvatar.borderColor = Color.parseColor(user.borderColor)
-            Timber.d("check color ${user.borderColor}")
             viewGenderToDatabase(user.gender)
         })
 
@@ -121,24 +120,18 @@ class ProfileDialogFragment : Fragment() {
         })
 
         viewModel.navigateSaveAndToBackHome.observe(viewLifecycleOwner, EventObserver { checker ->
-            if (checker && id != null) {
-                val avatar = binding.imageViewAvatar.drawable.toBitmap()
-                val nickName = binding.textViewName.text.toString()
-                val birthDay = binding.textViewDate.text.toString()
+            if (checker) {
+                val bitmap = binding.imageViewAvatar.drawable.toBitmap()
+                val nickname = binding.textViewName.text.toString()
                 val gender = getGender()
-
-                val userSave = User(id, avatar, nickName, birthDay, gender, "#FFFFFF")
-
-                if (user?.value == userSave) {
-                    Toast.makeText(requireContext(), "Không có gì thay đổi!", Toast.LENGTH_SHORT)
-                        .show()
-                    findNavController().navigateUp()
-                } else {
+                val userSave = user?.value
+                if (userSave != null) {
+                    userSave.avatar = bitmap
+                    userSave.nickName = nickname
+                    userSave.gender = gender
                     viewModel.saveProfileUser(userSave)
-                    val action =
-                        ProfileDialogFragmentDirections.actionProfileDialogFragmentToHomeFragment()
-                    findNavController().navigate(action)
                 }
+                findNavController().navigateUp()
             }
         })
 

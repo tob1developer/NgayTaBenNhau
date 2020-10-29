@@ -33,12 +33,6 @@ class DialogOptionFragment : DialogFragment() {
             }
         }
     }
-    private val homeViewModel : HomeViewModel by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -79,7 +73,8 @@ class DialogOptionFragment : DialogFragment() {
         viewModel.navigateChangeWallPage.observe(viewLifecycleOwner, EventObserver{
             if (it) {
 
-                val fragmentMangaer = activity?.supportFragmentManager?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+                val fragmentMangaer =
+                    activity?.supportFragmentManager?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
                 val intent = Intent()
                 intent.type = "image/*"
                 intent.action = Intent.ACTION_GET_CONTENT

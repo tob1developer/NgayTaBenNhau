@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.kietngo.ngaytabennhau.R
 import com.kietngo.ngaytabennhau.databinding.FragmentSettingBinding
@@ -42,6 +43,7 @@ class SettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val notification = NotificationLove(requireContext(),requireActivity())
+
 
         binding.btnBack.setOnClickListener {
             findNavController().navigateUp()

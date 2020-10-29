@@ -137,7 +137,7 @@ class HomeFragment : Fragment() {
                 binding.avatarPerson1.setImageBitmap(user.avatar)
                 binding.avatarPerson1.borderColor = Color.parseColor(user.borderColor)
                 binding.textViewPerson1.text = " ${user.nickName} "
-                setGenderWithUser(user.gender, binding.btnGender1)
+               setGenderWithUser(user.gender, binding.btnGender1)
             }
        })
 
