@@ -75,7 +75,7 @@ class NotificationLove(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = NAME_CHANNEL_NOTIFICATION
             val descriptionText = "Show information Been Together"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val importance = NotificationManager.IMPORTANCE_LOW
             val channel = NotificationChannel(CHANNEL_NOTIFICATION_ID, name, importance).apply {
                 description = descriptionText
             }
