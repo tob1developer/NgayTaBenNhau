@@ -232,6 +232,7 @@ class ProfileDialogFragment : Fragment() {
 
             //update image to dialog
             binding.imageViewAvatar.setImageBitmap(bitmap)
+
         }
     }
 }

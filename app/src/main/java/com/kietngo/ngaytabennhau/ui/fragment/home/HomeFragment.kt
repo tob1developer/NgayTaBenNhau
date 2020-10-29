@@ -1,5 +1,8 @@
 package com.kietngo.ngaytabennhau.ui.fragment.home
 
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -21,9 +24,11 @@ import com.kietngo.ngaytabennhau.repository.*
 import com.kietngo.ngaytabennhau.repository.model.Quote
 import com.kietngo.ngaytabennhau.ui.fragment.quote.QuoteViewModel
 import com.kietngo.ngaytabennhau.ui.fragment.shareviewModel.ShareHomeQuoteViewModel
+import com.kietngo.ngaytabennhau.ui.option.SELECT_IMG_REQ_CODE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.io.InputStream
 import java.util.*
 
 class HomeFragment : Fragment() {
@@ -180,5 +185,18 @@ class HomeFragment : Fragment() {
 
         val day = time/(1000*60*60*24)
         return "$day day"
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        //call back to OptionDialog
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == SELECT_IMG_REQ_CODE && data != null) {
+            val inputStream : InputStream? = data.data?.let {
+                requireContext().contentResolver.openInputStream(it)
+            }
+            val bitmap: Bitmap = BitmapFactory.decodeStream(inputStream)
+            viewModel.changeWallPage(bitmap)
+            Timber.d("change background")
+        }
     }
 }

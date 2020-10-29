@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.kietngo.ngaytabennhau.R
 import com.kietngo.ngaytabennhau.databinding.FragmentDialogOptionBinding
@@ -77,13 +78,14 @@ class DialogOptionFragment : DialogFragment() {
 
         viewModel.navigateChangeWallPage.observe(viewLifecycleOwner, EventObserver{
             if (it) {
+
+                val fragmentMangaer = activity?.supportFragmentManager?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
                 val intent = Intent()
                 intent.type = "image/*"
                 intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(
-                    Intent.createChooser(intent, "Select Picture Wallpage"),
-                    SELECT_IMG_REQ_CODE
-                )
+
+                val homeFragment =  fragmentMangaer.childFragmentManager.findFragmentById(R.id.nav_host_fragment)
+                homeFragment?.startActivityForResult(intent, SELECT_IMG_REQ_CODE)
             }
             findNavController().navigateUp()
         })
@@ -101,18 +103,4 @@ class DialogOptionFragment : DialogFragment() {
         })
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == SELECT_IMG_REQ_CODE && data != null) {
-            val inputStream : InputStream? = data.data?.let {
-                requireContext().contentResolver.openInputStream(it)
-            }
-            val bitmap: Bitmap = BitmapFactory.decodeStream(inputStream)
-            homeViewModel.changeWallPage(bitmap)
-            Timber.d("change background")
-            // dang bi loi
-        }
-
-    }
 }
